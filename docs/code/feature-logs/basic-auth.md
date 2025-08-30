@@ -8,12 +8,12 @@
 ## Feature Plan
 
 ### Database Layer
-<!-- TODO: Create Prisma schema with User model -->
-- 🕰️ Create Prisma schema with User model (id, email, password, createdAt)
-<!-- TODO: Set up database connection and migrations -->
-- 🕰️ Set up database connection and migrations
-<!-- TODO: Create initial migration for users table -->
-- 🕰️ Create initial migration for users table
+- ✅ Create Prisma schema with User model (id, email, password, createdAt)
+- ✅ Generate Prisma client for type-safe database access
+<!-- TODO: Start PostgreSQL with Docker Compose -->
+- 🕰️ Start PostgreSQL with Docker Compose
+<!-- TODO: Push schema to database -->
+- 🕰️ Push schema to database (npm run db:push)
 
 ### Backend API
 <!-- TODO: Set up Express server with basic middleware -->
@@ -66,5 +66,6 @@
 
 ## Current Status
 
-**Phase**: Planning complete, ready for implementation
-**Next**: Create Prisma schema and User model
+**Phase**: Database layer in progress
+**Completed**: Prisma schema created, client generated
+**Next**: Start PostgreSQL and push schema to database
