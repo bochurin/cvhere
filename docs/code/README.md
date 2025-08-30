@@ -11,6 +11,8 @@ This folder contains implementation-specific decisions made during development.
 - `pdf-export.md` - PDF generation implementation
 - `database-schema.md` - Database design and queries
 - `DEVELOPMENT-LOG.md` - Progress tracking and completed tasks
+- `package-management.md` - Package manager and monorepo structure decisions
+- `line-endings.md` - Git line ending configuration and rationale
 
 ## Decision Format
 
