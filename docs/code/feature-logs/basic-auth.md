@@ -10,10 +10,8 @@
 ### Database Layer
 - ✅ Create Prisma schema with User model (id, email, password, createdAt)
 - ✅ Generate Prisma client for type-safe database access
-<!-- TODO: Start PostgreSQL with Docker Compose -->
-- 🕰️ Start PostgreSQL with Docker Compose
-<!-- TODO: Push schema to database -->
-- 🕰️ Push schema to database (npm run db:push)
+- ✅ Start PostgreSQL with Docker Compose
+- ✅ Push schema to database (npm run db:push)
 
 ### Backend API
 <!-- TODO: Set up Express server with basic middleware -->
