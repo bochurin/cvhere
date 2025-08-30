@@ -16,12 +16,12 @@
 - **Branch**: develop (feature branches from here)
 - **Next**: Database schema design or authentication system
 
-### Decisions Made
-- **Tech Stack**: Node.js, Fastify *(changed from Express 2024-12-19)*, React, PostgreSQL, Docker, AWS
-- **Repository**: Monorepo approach for team coordination
-- **Deployment**: EC2 + Docker with GitHub Actions
-- **Testing**: Jest framework, code-first approach
-- **Monitoring**: Basic logging (Sentry deferred)
+### Current Status
+- **Phase**: Feature development ready
+- **Branch**: develop (feature branches from here)
+- **Next**: Backend API implementation with Fastify + TypeScript
+
+*See [DECISIONS.md](../DECISIONS.md) for all technical decisions and rationale.*
 
 ### Pending Tasks
 - ✅ Initialize Git repository

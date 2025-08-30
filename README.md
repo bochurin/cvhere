@@ -7,7 +7,8 @@ CV building and searching application
 Project documentation is organized in the `docs/` folder:
 
 - **[CONCEPT.md](docs/CONCEPT.md)** - Platform vision, features, and core concepts
-- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Tech stack, infrastructure, and technical principles
+- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Current tech stack and infrastructure overview
+- **[DECISIONS.md](docs/DECISIONS.md)** - Technical decisions log with rationale and history
 - **[DEVELOPMENT.md](docs/DEVELOPMENT.md)** - Development workflow, CI/CD, and testing strategy
 - **[SECURITY.md](docs/SECURITY.md)** - Security measures, privacy, and compliance
 - **[MVP-SCOPE.md](docs/MVP-SCOPE.md)** - MVP features, limitations, and success metrics
