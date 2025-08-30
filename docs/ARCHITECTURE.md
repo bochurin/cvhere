@@ -1,7 +1,7 @@
 # CVHere - Architecture Decisions
 
 ## Tech Stack
-- **Backend**: Node.js + Express
+- **Backend**: Node.js + Fastify + TypeScript *(updated 2024-12-19: changed from Express to Fastify for better TypeScript support)*
 - **Frontend**: React + localStorage
 - **Database**: PostgreSQL (SQL + JSONB for NoSQL)
 - **Authentication**: Custom JWT + bcrypt

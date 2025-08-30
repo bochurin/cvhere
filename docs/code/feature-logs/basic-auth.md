@@ -56,11 +56,12 @@
 
 ## Technical Decisions
 
+- **Backend Framework**: Fastify (TypeScript-first, performance)
 - **Database**: Prisma ORM with PostgreSQL
 - **Authentication**: JWT tokens with bcrypt password hashing
 - **Frontend State**: React Context + localStorage
-- **Validation**: Joi for backend, basic HTML5 for frontend
-- **Security**: Helmet, CORS, rate limiting
+- **Validation**: Fastify JSON schema validation
+- **Security**: Fastify plugins (helmet, cors, rate-limit)
 
 ## Current Status
 
