@@ -14,6 +14,7 @@ This folder contains implementation-specific decisions made during development.
 - `package-management.md` - Package manager and monorepo structure decisions
 - `line-endings.md` - Git line ending configuration and rationale
 - `todo-tree-config.md` - TODO Tree icons and colors configuration
+- `database-approach.md` - Database access layer decision (Prisma ORM)
 
 ## Decision Format
 

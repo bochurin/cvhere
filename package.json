@@ -13,8 +13,11 @@
     "test:backend": "jest backend/",
     "test:frontend": "cd frontend && vitest run",
     "start": "node backend/src/app.js",
-    "migrate": "node database/scripts/migrate.js",
-    "seed": "node database/scripts/seed.js"
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -33,7 +36,9 @@
     "vite": "^5.0.10",
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.6.2",
-    "joi": "^17.11.0"
+    "joi": "^17.11.0",
+    "prisma": "^5.7.1",
+    "@prisma/client": "^5.7.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
