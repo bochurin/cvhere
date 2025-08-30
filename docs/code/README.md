@@ -13,6 +13,7 @@ This folder contains implementation-specific decisions made during development.
 - `DEVELOPMENT-LOG.md` - Progress tracking and completed tasks
 - `package-management.md` - Package manager and monorepo structure decisions
 - `line-endings.md` - Git line ending configuration and rationale
+- `todo-tree-config.md` - TODO Tree icons and colors configuration
 
 ## Decision Format
 
