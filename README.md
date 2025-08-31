@@ -14,3 +14,22 @@ Project documentation is organized in the `docs/` folder:
 - **[SECURITY.md](docs/SECURITY.md)** - Security measures, privacy, and compliance
 - **[MVP-SCOPE.md](docs/MVP-SCOPE.md)** - MVP features, limitations, and success metrics
 - **[code/](docs/code/)** - Implementation decisions organized by feature branches
+
+## Development Workflow
+
+### Discussing New Ideas
+
+To discuss new ideas or changes during development, use:
+
+**"Обсуди: [your idea/question]"**
+
+**Examples:**
+- "Обсуди: should we use Redis for caching?"
+- "Обсуди: do we need a separate microservice for authentication?"
+- "Обсуди: should we change the database structure?"
+
+**Process:**
+1. **Clarification** - Questions to understand the context
+2. **Discussion** - Consider alternatives and implications
+3. **Decision** - Update all relevant documentation if decision is made
+4. **Log** - Record discussion in [DISCUSSIONS.md](docs/DISCUSSIONS.md)
