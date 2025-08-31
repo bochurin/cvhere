@@ -21,12 +21,12 @@ Project documentation is organized in the `docs/` folder:
 
 To discuss new ideas or changes during development, use:
 
-**"Обсуди: [your idea/question]"**
+**"Discuss: [your idea/question]"**
 
 **Examples:**
-- "Обсуди: should we use Redis for caching?"
-- "Обсуди: do we need a separate microservice for authentication?"
-- "Обсуди: should we change the database structure?"
+- "Discuss: should we use Redis for caching?"
+- "Discuss: do we need a separate microservice for authentication?"
+- "Discuss: should we change the database structure?"
 
 **Process:**
 1. **Clarification** - Questions to understand the context
