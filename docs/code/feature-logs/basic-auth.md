@@ -17,12 +17,9 @@
 - ✅ Update database schema (npm run db:push)
 
 ### Email Service Setup
-<!-- TODO: Choose email service provider -->
-- 🕰️ Choose email service provider (Nodemailer + Gmail/SendGrid)
-<!-- TODO: Configure email templates -->
-- 🕰️ Configure email templates for verification and password reset
-<!-- TODO: Set up email service module -->
-- 🕰️ Set up email service module with TypeScript
+- ✅ Choose email service provider (AWS SES with replaceable architecture)
+- ✅ Configure email templates for verification and password reset
+- ✅ Set up email service module with TypeScript
 
 ### Backend API - Core Auth
 - ✅ Set up Fastify server with TypeScript and middleware

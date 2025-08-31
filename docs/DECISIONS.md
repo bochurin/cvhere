@@ -14,6 +14,11 @@ Chronological log of all technical decisions with rationale and change history.
 **Rationale**: Type safety with Prisma, better IDE support, compile-time error checking
 **Details**: Full TypeScript setup with tsconfig.json, ts-node for development
 
+### Email Service: AWS SES + SendGrid Failover
+**Decision**: Use AWS SES primary with SendGrid secondary for automatic failover
+**Rationale**: Cost optimization (AWS SES cheap) + reliability (SendGrid backup for limits/outages)
+**Details**: Dual service architecture with limit tracking, automatic failover on errors/limits
+
 ### Database Access: Prisma ORM
 **Decision**: Use Prisma ORM for database access
 **Rationale**: Type-safe operations, excellent DX, perfect for atomic data model
