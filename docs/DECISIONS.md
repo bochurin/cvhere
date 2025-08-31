@@ -33,3 +33,18 @@ Chronological log of all technical decisions with rationale and change history.
 **Decision**: Custom icon scheme matching markdown visual style
 **Rationale**: Visual consistency, better readability, professional workflow
 **Details**: See [todo-tree-config.md](code/todo-tree-config.md)
+
+### TypeScript Adoption
+**Decision**: Use TypeScript for backend development
+**Rationale**: Type safety with Prisma, better IDE support, compile-time error checking
+**Details**: Full TypeScript setup with tsconfig.json, ts-node for development
+
+### Email Service: AWS SES + SendGrid Failover
+**Decision**: Use AWS SES primary with SendGrid secondary for automatic failover
+**Rationale**: Cost optimization (AWS SES cheap) + reliability (SendGrid backup for limits/outages)
+**Details**: Dual service architecture with limit tracking, automatic failover on errors/limits
+
+### Runtime Configuration: File-based Config
+**Decision**: Use configuration file + file watching for runtime settings without deployment
+**Rationale**: Clean separation from user data, version controllable, no additional DB infrastructure
+**Details**: JSON config file with admin API updates, file system monitoring for hot reload
