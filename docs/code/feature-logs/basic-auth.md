@@ -12,12 +12,9 @@
 - ✅ Generate Prisma client for type-safe database access
 - ✅ Start PostgreSQL with Docker Compose
 - ✅ Push schema to database (npm run db:push)
-<!-- TODO: Add email verification fields to User model -->
-- 🕰️ Add email verification fields to User model (emailVerified, verificationToken)
-<!-- TODO: Add password reset fields to User model -->
-- 🕰️ Add password reset fields to User model (resetToken, resetTokenExpiry)
-<!-- TODO: Update database schema -->
-- 🕰️ Update database schema (npm run db:push)
+- ✅ Add email verification fields to User model (emailVerified, verificationToken)
+- ✅ Add password reset fields to User model (resetToken, resetTokenExpiry)
+- ✅ Update database schema (npm run db:push)
 
 ### Email Service Setup
 <!-- TODO: Choose email service provider -->
