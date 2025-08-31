@@ -53,3 +53,9 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: Need runtime updates for email service switching, API rate limits; avoid mixing with user data
 - **Outcome**: Configuration file + file watching approach - JSON config file with admin API updates
 - **Actions**: Will implement config file system with file monitoring and admin API
+
+## 2024-12-19 - Configuration file format: JSON vs JSON5 vs YAML
+- **Question**: Which format for config files with inline comment support?
+- **Key Points**: JSON5 has tooling issues, YAML widely supported, inline comments important for config
+- **Outcome**: Chose YAML for config files - better comment support, widely used, good tooling
+- **Actions**: Updated config system to use YAML parser, converted config file with inline comments

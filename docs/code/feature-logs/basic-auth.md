@@ -20,6 +20,8 @@
 - ✅ Choose email service provider (AWS SES with replaceable architecture)
 - ✅ Configure email templates for verification and password reset
 - ✅ Set up email service module with TypeScript
+- ✅ Implement runtime configuration system with file watching
+- ✅ Add per-provider email limits and priority array
 
 ### Backend API - Core Auth
 - ✅ Set up Fastify server with TypeScript and middleware
@@ -95,12 +97,13 @@
 - **Frontend State**: React Context + localStorage
 - **Validation**: Fastify JSON schema validation + email format validation
 - **Security**: Fastify plugins (helmet, cors, rate-limit) + token expiration
+- **Configuration**: Runtime config file with file watching, per-provider email limits
 
 ## Current Status
 
-**Phase**: Email service setup
-**Completed**: Database schema with auth fields, TypeScript + Fastify server setup
-**Next**: Choose and configure email service provider
+**Phase**: Backend API implementation
+**Completed**: Database schema, email service with failover, runtime configuration system
+**Next**: Authentication endpoints (register, login, verify email)
 
 ## Plan Confirmation
 

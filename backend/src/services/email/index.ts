@@ -2,18 +2,24 @@ import { EmailService } from './types';
 import { SESEmailService } from './sesService';
 import { SendGridEmailService } from './sendgridService';
 import { FailoverEmailService } from './failoverService';
+import { configService } from '../config';
 
 // Factory function for email service - easily replaceable
 export const createEmailService = (): EmailService => {
-  const provider = process.env.EMAIL_PROVIDER || 'failover';
+  const providers = configService.getConfig().email.providers;
   
+  // If multiple providers, use failover service
+  if (providers.length > 1) {
+    return new FailoverEmailService();
+  }
+  
+  // Single provider
+  const provider = providers[0];
   switch (provider) {
     case 'ses':
       return new SESEmailService();
     case 'sendgrid':
       return new SendGridEmailService();
-    case 'failover':
-      return new FailoverEmailService();
     default:
       return new FailoverEmailService();
   }

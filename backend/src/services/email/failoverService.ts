@@ -1,6 +1,7 @@
 import { EmailService } from './types';
 import { SESEmailService } from './sesService';
 import { SendGridEmailService } from './sendgridService';
+import { configService } from '../config';
 
 interface EmailLimits {
   dailyLimit: number;
@@ -17,7 +18,7 @@ export class FailoverEmailService implements EmailService {
     this.primaryService = new SESEmailService();
     this.secondaryService = new SendGridEmailService();
     this.limits = {
-      dailyLimit: parseInt(process.env.SES_DAILY_LIMIT || '200'), // AWS SES default limit
+      dailyLimit: configService.getConfig().email.limits.ses.dailyLimit,
       dailyCount: 0,
       lastResetDate: new Date().toDateString()
     };

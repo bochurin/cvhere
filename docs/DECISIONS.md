@@ -22,7 +22,7 @@ Chronological log of all technical decisions with rationale and change history.
 ### Runtime Configuration: File-based Config
 **Decision**: Use configuration file + file watching for runtime settings without deployment
 **Rationale**: Clean separation from user data, version controllable, no additional DB infrastructure
-**Details**: JSON config file with admin API updates, file system monitoring for hot reload
+**Details**: YAML config file with inline comments, admin API updates, file system monitoring for hot reload
 
 ### Database Access: Prisma ORM
 **Decision**: Use Prisma ORM for database access
