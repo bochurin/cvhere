@@ -33,6 +33,7 @@ To discuss new ideas or changes during development, use:
 2. **Discussion** - Consider alternatives and implications
 3. **Decision** - Update all relevant documentation if decision is made
 4. **Log** - Record discussion in [DISCUSSIONS.md](docs/DISCUSSIONS.md)
+5. **Merge Docs** - Merge documentation decisions to main branch (excluding feature code)
 
 ### Feature Development
 
@@ -54,3 +55,16 @@ To start implementing a new feature, use:
 6. **Progress Updates** - Mark completed steps in feature logs
 
 **Benefits:** Clear scope, documented plan evolution, clean git history, progress tracking
+
+### Documentation Strategy
+
+**Technical decisions made during features:**
+- **Document immediately** in DECISIONS.md and DISCUSSIONS.md
+- **Merge docs to main** after decisions (excluding feature implementation)
+- **Keep feature code** in feature branch until complete
+- **Separate concerns** - decisions vs implementation
+
+**This ensures:**
+- Project decisions available to all developers
+- Clean separation of architecture vs features
+- Main branch always has latest technical choices
