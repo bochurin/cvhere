@@ -33,3 +33,24 @@ To discuss new ideas or changes during development, use:
 2. **Discussion** - Consider alternatives and implications
 3. **Decision** - Update all relevant documentation if decision is made
 4. **Log** - Record discussion in [DISCUSSIONS.md](docs/DISCUSSIONS.md)
+
+### Feature Development
+
+To start implementing a new feature, use:
+
+**"Feature: [feature name] - [brief description]"**
+
+**Examples:**
+- "Feature: Basic Auth - JWT authentication system"
+- "Feature: Profile Builder - Atomic data model for user profiles"
+- "Feature: PDF Export - Generate CVs from profile data"
+
+**Process:**
+1. **Plan Creation** - Build detailed step-by-step plan
+2. **Plan Confirmation** - Review and adjust before starting
+3. **Step-by-step Execution** - Implement one step at a time
+4. **Plan Updates** - If plan changes, update feature log immediately
+5. **Commit After Steps** - Clean commits with meaningful messages
+6. **Progress Updates** - Mark completed steps in feature logs
+
+**Benefits:** Clear scope, documented plan evolution, clean git history, progress tracking
