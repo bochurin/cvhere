@@ -14,6 +14,8 @@ Project documentation is organized in the `docs/` folder:
 - **[SECURITY.md](docs/SECURITY.md)** - Security measures, privacy, and compliance
 - **[MVP-SCOPE.md](docs/MVP-SCOPE.md)** - MVP features, limitations, and success metrics
 - **[code/](docs/code/)** - Implementation decisions organized by feature branches
+- **[knowledge/](docs/knowledge/)** - Reference materials and extension documentation
+- **[chat-backup/](docs/chat-backup/)** - Archived development chat sessions
 
 ## Development Workflow
 
