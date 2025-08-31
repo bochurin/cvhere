@@ -47,3 +47,9 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: AWS SES has daily limits, need backup for reliability, cost optimization with primary/secondary
 - **Outcome**: Implement dual email service with automatic failover - AWS SES primary, SendGrid secondary
 - **Actions**: Will implement failover logic with limit tracking and availability detection
+
+## 2024-12-19 - Runtime configuration without deployment
+- **Question**: How to configure app parameters (email settings, rate limits) without redeployment?
+- **Key Points**: Need runtime updates for email service switching, API rate limits; avoid mixing with user data
+- **Outcome**: Configuration file + file watching approach - JSON config file with admin API updates
+- **Actions**: Will implement config file system with file monitoring and admin API
