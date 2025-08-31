@@ -9,6 +9,11 @@ Chronological log of all technical decisions with rationale and change history.
 **Rationale**: Better TypeScript support, performance, and Prisma integration
 **Details**: See [backend-framework.md](code/backend-framework.md)
 
+### TypeScript Adoption
+**Decision**: Use TypeScript for backend development
+**Rationale**: Type safety with Prisma, better IDE support, compile-time error checking
+**Details**: Full TypeScript setup with tsconfig.json, ts-node for development
+
 ### Database Access: Prisma ORM
 **Decision**: Use Prisma ORM for database access
 **Rationale**: Type-safe operations, excellent DX, perfect for atomic data model

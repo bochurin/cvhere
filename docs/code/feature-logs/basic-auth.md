@@ -25,8 +25,7 @@
 - 🕰️ Set up email service module with TypeScript
 
 ### Backend API - Core Auth
-<!-- TODO: Set up Fastify server with TypeScript -->
-- 🕰️ Set up Fastify server with TypeScript and middleware
+- ✅ Set up Fastify server with TypeScript and middleware
 <!-- TODO: Implement user registration endpoint -->
 - 🕰️ Implement user registration endpoint (POST /api/auth/register)
 <!-- TODO: Implement email verification endpoint -->
@@ -102,9 +101,9 @@
 
 ## Current Status
 
-**Phase**: Database schema expansion
-**Completed**: Basic Prisma schema, PostgreSQL running, basic User model
-**Next**: Add email verification and password reset fields to User model
+**Phase**: Email service setup
+**Completed**: Database schema with auth fields, TypeScript + Fastify server setup
+**Next**: Choose and configure email service provider
 
 ## Plan Confirmation
 
