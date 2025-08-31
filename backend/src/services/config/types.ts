@@ -15,7 +15,7 @@ export interface AppConfig {
   };
   api: {
     rateLimitPerMinute: number;
-    jwtExpiresIn: string;
+    jwtExpiresIn: string | number;
   };
   features: {
     emailVerificationRequired: boolean;
