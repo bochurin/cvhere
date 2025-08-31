@@ -14,6 +14,15 @@ model User {
   id        String   @id @default(cuid())
   email     String   @unique
   password  String
+  
+  // Email verification
+  emailVerified     Boolean   @default(false)
+  verificationToken String?   @unique
+  
+  // Password reset
+  resetToken       String?   @unique
+  resetTokenExpiry DateTime?
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
