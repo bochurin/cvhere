@@ -48,9 +48,10 @@ npm run test
 **"Feature: [feature name] - [brief description]"**
 
 ### Documentation Strategy
-- **Common docs** (architecture, decisions) → merge to main
+- **Common docs** (architecture, decisions) → merge to develop
 - **Feature logs** → stay in feature branches until complete
-- **Automated workflow** → `npm run docs` (commits docs-only, selective merge to main)
+- **Automated workflow** → `npm run docs:commit` (commits docs-only, selective merge to develop)
+- **Team workflow** → develop → main for documentation
 - **Separate concerns** - decisions vs implementation
 
 ## 📁 Project Structure

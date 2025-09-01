@@ -34,6 +34,7 @@
 
 ## Documentation Strategy
 - **Technical decisions**: Document immediately in DECISIONS.md and DISCUSSIONS.md
-- **Merge docs to main**: After decisions (excluding feature implementation)
+- **Merge docs to develop**: After decisions (excluding feature implementation)
 - **Feature code**: Keep in feature branch until complete
 - **Separate concerns**: Architecture decisions vs feature implementation
+- **Main branch**: Gets docs through develop → main merges
