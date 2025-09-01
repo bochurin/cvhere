@@ -24,6 +24,11 @@ Chronological log of all technical decisions with rationale and change history.
 **Rationale**: Clean separation from user data, version controllable, no additional DB infrastructure
 **Details**: YAML config file with inline comments, admin API updates, file system monitoring for hot reload
 
+### Development Approach: Minimal Foundation First
+**Decision**: Start with minimal working app before adding complex features
+**Rationale**: Solid foundation, working CI/CD early, incremental complexity, easier debugging
+**Details**: Minimal backend → simple frontend → CI/CD → authentication → features
+
 ### Database Access: Prisma ORM
 **Decision**: Use Prisma ORM for database access
 **Rationale**: Type-safe operations, excellent DX, perfect for atomic data model

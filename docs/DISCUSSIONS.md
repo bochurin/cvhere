@@ -59,3 +59,9 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: JSON5 has tooling issues, YAML widely supported, inline comments important for config
 - **Outcome**: Chose YAML for config files - better comment support, widely used, good tooling
 - **Actions**: Updated config system to use YAML parser, converted config file with inline comments
+
+## 2024-12-19 - Reset to minimal foundation approach
+- **Question**: Continue with complex auth implementation or start with minimal foundation?
+- **Key Points**: Current auth implementation became complex, better to build incrementally from solid base
+- **Outcome**: Cancel basic-auth feature, start fresh with minimal app foundation
+- **Actions**: Created basic-app feature plan, will build: minimal backend → simple frontend → CI/CD → then auth
