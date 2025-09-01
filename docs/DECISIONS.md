@@ -39,6 +39,16 @@ Chronological log of all technical decisions with rationale and change history.
 **Rationale**: Reproducible infrastructure, version controlled, multi-environment support, team collaboration
 **Details**: AWS VPC, EC2, Security Groups managed via Terraform with staging/production tfvars
 
+### CI/CD Pipeline: GitHub Actions
+**Decision**: Use GitHub Actions for automated build, test, and deployment pipeline
+**Rationale**: Repository integration, cost effective, environment management, path-based triggers
+**Details**: Separate workflows for backend, frontend, and infrastructure with environment-specific deployments
+
+### Documentation Strategy: Branch-Based Separation
+**Decision**: Separate common docs from feature docs with different commit strategies
+**Rationale**: Architectural decisions available immediately to all developers, feature details stay with implementation
+**Details**: Common docs (ARCHITECTURE.md, DECISIONS.md, etc.) committed to current branch and merged to main; feature logs stay in feature branches
+
 ### Database Access: Prisma ORM
 **Decision**: Use Prisma ORM for database access
 **Rationale**: Type-safe operations, excellent DX, perfect for atomic data model

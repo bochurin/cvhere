@@ -77,3 +77,15 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: Manual is quick but not reproducible, Terraform provides version control and multi-environment support
 - **Outcome**: Use Terraform for Infrastructure as Code - proper DevOps practice
 - **Actions**: Created Terraform configuration with VPC, EC2, Security Groups for staging/production
+
+## 2024-12-19 - CI/CD pipeline implementation
+- **Question**: Manual deployment vs automated CI/CD pipeline for build, test, and deployment?
+- **Key Points**: GitHub Actions integration, cost effectiveness, environment separation, pipeline config injection
+- **Outcome**: Use GitHub Actions with separate workflows for backend, frontend, and infrastructure
+- **Actions**: Created GitHub Actions workflows with environment-specific deployments and Terraform automation
+
+## 2024-12-19 - Documentation fixing strategy
+- **Question**: Should common docs be committed to current branch and merged to main, while feature docs stay in feature branches?
+- **Key Points**: Architectural decisions need to be available to all developers, feature implementation details should stay with feature code
+- **Outcome**: Branch-based documentation separation - common docs merge to main, feature logs stay in feature branches
+- **Actions**: Implement separate commit strategy for common vs feature documentation

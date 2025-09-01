@@ -2,17 +2,26 @@
 
 ## Current Tech Stack
 - **Backend**: Node.js + Fastify + TypeScript
-- **Frontend**: React + localStorage
-- **Database**: PostgreSQL + Prisma ORM
-- **Authentication**: JWT + bcrypt
-- **Development**: Docker Compose + GitHub Actions
+- **Frontend**: React + Vite + js-yaml
+- **Database**: PostgreSQL + Prisma ORM (planned)
+- **Configuration**: Pipeline-driven YAML configs
+- **Development**: ts-node + nodemon
 
 ## Infrastructure
-- **Deployment**: EC2 + Docker + Docker Compose
+- **Cloud**: AWS (free tier optimized)
+- **Infrastructure as Code**: Terraform
+- **Compute**: EC2 t2.micro instances
+- **Networking**: VPC with public subnets
+- **Security**: Security Groups for HTTP/HTTPS/SSH/API
 - **Environments**: Development (local), Staging, Production
-- **CI/CD**: GitHub Actions
-- **Monitoring**: Basic logging + health checks
-- **Cloud**: AWS with free tier optimization
+
+## CI/CD Pipeline
+- **Platform**: GitHub Actions
+- **Workflows**: Backend, Frontend, Infrastructure (Terraform)
+- **Environment Strategy**: develop → staging, tags → production
+- **Config Injection**: Pipeline replaces config.yaml per environment
+- **Triggers**: Path-based (only run when relevant files change)
+- **Security**: AWS credentials via GitHub secrets
 
 ## Architecture Principles
 - **Privacy-First**: Personal data in localStorage only

@@ -4,19 +4,22 @@ This folder contains implementation-specific decisions made during development.
 
 ## Organization
 
-**By Feature Branch:**
-- `auth-system.md` - Authentication implementation decisions
-- `profile-builder.md` - Profile building feature decisions
-- `matching-engine.md` - Search and matching logic decisions
-- `pdf-export.md` - PDF generation implementation
-- `database-schema.md` - Database design and queries
-- `DEVELOPMENT-LOG.md` - Progress tracking and completed tasks
-- `package-management.md` - Package manager and monorepo structure decisions
-- `line-endings.md` - Git line ending configuration and rationale
-- `todo-tree-config.md` - TODO Tree icons and colors configuration
-- `database-approach.md` - Database access layer decision (Prisma ORM)
+**Implementation Decisions:**
 - `backend-framework.md` - Backend framework decision (Fastify)
+- `database-approach.md` - Database access layer decision (Prisma ORM)
+- `frontend-config.md` - Pipeline-driven configuration approach
+- `terraform-infrastructure.md` - Infrastructure as Code implementation
+- `package-management.md` - Package manager and monorepo structure
+- `repository-structure.md` - Monorepo organization
+- `line-endings.md` - Git line ending configuration
+- `todo-tree-config.md` - TODO Tree extension configuration
+
+**Development Tracking:**
+- `DEVELOPMENT-LOG.md` - Progress tracking and completed tasks
 - `feature-logs/` - Feature-specific implementation logs and plans
+  - `basic-app.md` - Phase 2: Frontend-backend integration
+  - `basic-auth.md` - Authentication system (cancelled)
+  - `ci-cd-pipeline.md` - Phase 3: CI/CD and infrastructure
 
 ## Decision Format
 
