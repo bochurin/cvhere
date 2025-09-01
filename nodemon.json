@@ -1,0 +1,7 @@
+{
+  "watch": ["backend/src"],
+  "ext": "ts,js",
+  "ignore": ["backend/dist", "node_modules"],
+  "delay": 1000,
+  "exec": "ts-node backend/src/server.ts"
+}

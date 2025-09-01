@@ -1,0 +1,33 @@
+# CVHere Application Configuration
+# Runtime configuration - changes take effect without deployment
+
+email:
+  # Email providers in priority order (first = primary, second = fallback)
+  providers: [ses, sendgrid]
+  
+  # Per-provider limits (daily/monthly)
+  limits:
+    ses:
+      dailyLimit: 200      # AWS SES free tier daily limit
+      monthlyLimit: 62000  # AWS SES free tier monthly limit (from EC2)
+    sendgrid:
+      dailyLimit: 100      # SendGrid free tier daily limit
+      monthlyLimit: 3000   # SendGrid free tier monthly limit
+  
+  # Email settings
+  fromEmail: noreply@cvhere.net
+
+api:
+  rateLimitPerMinute: 100  # API requests per minute per IP
+  jwtExpiresIn: 7d         # JWT token expiration time
+
+frontend:
+  backendUrl: http://localhost:3001  # Backend API URL for frontend
+
+features:
+  emailVerificationRequired: true  # Require email verification before login
+  passwordResetEnabled: true       # Enable password reset functionality
+
+# Metadata (automatically updated)
+updatedAt: "2024-12-19T00:00:00.000Z"
+version: "1.0.0"

@@ -1,0 +1,2 @@
+# Staging Environment Configuration
+backendUrl: https://api-staging.cvhere.net  # Staging backend URL
