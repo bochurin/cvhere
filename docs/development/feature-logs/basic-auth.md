@@ -4,12 +4,12 @@
 - **`feature/basic-auth`** (2024-12-19) - Cancelled due to complexity, started with email service and config
 - **Future iteration** - Simplified approach after Phase 3 completion
 
-## Latest Iteration: 2024-12-19 - Basic Auth Implementation
+## Next Iteration: 2024-12-19 - Simplified Auth After CI/CD
 
-**Branch**: `feature/basic-auth` (cancelled)
-**Goal**: Implement complete authentication system with email confirmation and password recovery
-**Outcome**: Too complex for Phase 2, discovered need for better CI/CD infrastructure first
-**Cross-Feature Learning**: Realized authentication needs proper deployment pipeline, switched to ci-cd-pipeline feature
+**Branch**: `feature/basic-auth` (ready to restart)
+**Goal**: Implement minimal JWT-based authentication system
+**Prerequisites**: CI/CD pipeline complete ✅
+**Approach**: Start simple, add complexity incrementally
 
 ## Feature Plan
 
@@ -37,12 +37,21 @@
 - 📋 Add JWT token generation and validation middleware
 - 📋 Create protected route example (GET /api/auth/profile)
 
-### 📋 Future Simplified Approach (Planned)
-- 📋 JWT-only authentication (no email verification initially)
-- 📋 Basic user registration and login
-- 📋 Password hashing with bcrypt
-- 📋 Protected routes middleware
-- 📋 Simple frontend login/register forms
+### 🕰️ Phase 1: Minimal Auth (Next)
+- 🕰️ JWT-only authentication (no email verification) // TODO: Install jsonwebtoken and bcrypt packages
+- 🕰️ Basic user registration endpoint (POST /api/auth/register) // TODO: Add password validation and user creation
+- 🕰️ Basic login endpoint (POST /api/auth/login) // TODO: Implement password verification and JWT generation
+- 🕰️ Password hashing with bcrypt // TODO: Hash passwords before storing in database
+- 🕰️ JWT middleware for protected routes // TODO: Create JWT verification middleware
+- 🕰️ Simple frontend login/register forms // TODO: Build React forms with validation
+- 🕰️ User profile endpoint (GET /api/auth/profile) // TODO: Return user data from JWT token
+
+### 🕰️ Phase 2: Enhanced Auth (Later)
+- 🕰️ Email verification system // TODO: Add email verification endpoints and templates
+- 🕰️ Password reset functionality // TODO: Implement password reset with secure tokens
+- 🕰️ Rate limiting and security headers // TODO: Add fastify-rate-limit and helmet plugins
+- 🕰️ User session management // TODO: Add session storage and refresh tokens
+- 🕰️ Remember me functionality // TODO: Implement persistent login with secure cookies
 
 ## Success Criteria
 
@@ -71,21 +80,27 @@
 
 ## Current Status
 
-**Status**: CANCELLED - 2024-12-19
-**Reason**: Starting fresh with minimal foundation approach
-**Completed**: Database schema, email service with failover, runtime configuration system
-**Decision**: Build minimal app first, then add complexity incrementally
+**Status**: READY TO START - 2024-12-19
+**Prerequisites**: CI/CD pipeline complete ✅
+**Approach**: Minimal viable authentication first
+**Previous Work**: Database schema and email service can be reused later
 
 ## Cross-Feature Dependencies
 
-**Depends on**: ci-cd-pipeline (needs proper deployment for production auth)
-**Depends on**: basic-app (foundation with health checks and configuration)
+**Depends on**: ci-cd-pipeline (needs proper deployment for production auth) ✅
+**Depends on**: basic-app (foundation with health checks and configuration) ✅
 **Learning**: Complex features need solid infrastructure foundation first
 
-## Next Iteration Plan
+## Implementation Plan
 
-**Simplified Approach**:
-1. **Start after CI/CD is complete** - proper deployment pipeline ready
-2. **JWT-only initially** - no email verification complexity
-3. **Basic registration/login** - minimal viable authentication
-4. **Add complexity gradually** - email verification, password reset later
+**Phase 1 - Minimal Auth (1-2 days)**:
+1. **Database setup** - Reuse existing Prisma schema (User model) // TODO: Update User model for JWT-only auth
+2. **Backend endpoints** - Register, login, profile (JWT-only) // TODO: Implement POST /api/auth/register endpoint
+3. **Frontend forms** - Simple login/register UI // TODO: Create login/register React components
+4. **Protected routes** - JWT middleware and React auth context // TODO: Add JWT middleware to backend
+5. **Deploy and test** - Use new CI/CD pipeline // TODO: Test auth system with CI/CD deployment
+
+**Phase 2 - Enhanced Auth (later)**:
+1. **Email verification** - Reuse existing email service
+2. **Password reset** - Token-based recovery
+3. **Security enhancements** - Rate limiting, session management
