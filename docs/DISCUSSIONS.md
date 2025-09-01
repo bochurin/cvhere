@@ -53,3 +53,21 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: Need runtime updates for email service switching, API rate limits; avoid mixing with user data
 - **Outcome**: Configuration file + file watching approach - JSON config file with admin API updates
 - **Actions**: Will implement config file system with file monitoring and admin API
+
+## 2024-12-19 - Configuration file format: JSON vs JSON5 vs YAML
+- **Question**: Which format for config files with inline comment support?
+- **Key Points**: JSON5 has tooling issues, YAML widely supported, inline comments important for config
+- **Outcome**: Chose YAML for config files - better comment support, widely used, good tooling
+- **Actions**: Updated config system to use YAML parser, converted config file with inline comments
+
+## 2024-12-19 - Reset to minimal foundation approach
+- **Question**: Continue with complex auth implementation or start with minimal foundation?
+- **Key Points**: Current auth implementation became complex, better to build incrementally from solid base
+- **Outcome**: Cancel basic-auth feature, start fresh with minimal app foundation
+- **Actions**: Created basic-app feature plan, will build: minimal backend → simple frontend → CI/CD → then auth
+
+## 2024-12-19 - Frontend configuration strategy
+- **Question**: How to configure frontend for different environments - build-time vs runtime?
+- **Key Points**: Build-time requires redeploy for config changes, runtime allows flexibility but has security concerns
+- **Outcome**: Pipeline-driven configuration - single build artifact with pipeline-injected configs
+- **Actions**: Single config.yaml file replaced by deployment pipeline per environment

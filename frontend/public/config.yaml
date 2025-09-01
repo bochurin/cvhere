@@ -1,0 +1,3 @@
+# Default Development Configuration
+# This file is replaced by pipeline for staging/production
+backendUrl: http://localhost:3001
