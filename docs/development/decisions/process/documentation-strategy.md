@@ -19,7 +19,7 @@
 
 **Implementation**:
 
-### Merge to Main
+### Merge to Develop
 - **Project docs** (strategic): CONCEPT.md, ARCHITECTURE.md, MVP-SCOPE.md, SECURITY.md, WORKFLOW.md
 - **Decisions** (architectural): All technical decisions and discussions
 - **Progress log** (common status): Overall development phases and current status
@@ -29,6 +29,11 @@
 ### Stay in Feature Branches
 - **Feature logs** (implementation tracking): Specific feature development details and progress
 - **Feature-specific code**: Implementation until feature complete
+
+### Team Workflow
+- **Documentation flow**: feature → develop → main
+- **Integration testing**: Documentation tested in develop before main
+- **Consistency**: Same workflow for code and documentation
 
 **Benefits**:
 - **Immediate availability** of architectural decisions to all developers
@@ -40,5 +45,6 @@
 1. **Make architectural decisions** - Document in decisions/
 2. **Update project status** - Update PROGRESS-LOG.md
 3. **Commit common docs** - Project, decisions, progress, reference
-4. **Merge to main** - Make available to all developers
-5. **Feature work continues** - Feature logs stay in feature branch until complete
+4. **Merge to develop** - Integration testing and team coordination
+5. **Merge develop to main** - Final documentation deployment
+6. **Feature work continues** - Feature logs stay in feature branch until complete
