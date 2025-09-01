@@ -8,6 +8,7 @@ Technical decisions specific to development process and tooling.
 - **[repository-structure.md](repository-structure.md)** - Monorepo organization
 - **[line-endings.md](line-endings.md)** - Git configuration for cross-platform
 - **[todo-tree.md](todo-tree.md)** - Development workflow tooling
+- **[module-system.md](module-system.md)** - Mixed ES modules/CommonJS strategy
 
 ## Scope
 

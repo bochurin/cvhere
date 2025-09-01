@@ -89,3 +89,9 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: Architectural decisions need to be available to all developers, feature implementation details should stay with feature code
 - **Outcome**: Selective merging strategy - project docs + decisions + progress log merge to main, feature logs stay in feature branches
 - **Actions**: Implement selective commit strategy with progress log included in common docs
+
+## 2024-12-19 - Module system strategy for frontend and backend
+- **Question**: Which module system (ES modules vs CommonJS) to use for backend and frontend in development and production?
+- **Key Points**: Vite prefers ES modules, Node.js ecosystem more stable with CommonJS, production requirements differ from development
+- **Outcome**: Mixed system - Frontend ES modules (Vite native), Backend CommonJS (Node.js stable), tsx for TypeScript execution
+- **Actions**: Configure frontend with ES modules, backend with CommonJS, use tsx for both TypeScript compilation

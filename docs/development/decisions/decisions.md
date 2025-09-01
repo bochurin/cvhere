@@ -20,6 +20,7 @@ Master index of all technical decisions with links to detailed documentation.
 - **[Line Endings](process/line-endings.md)** - Git configuration for cross-platform
 - **[TODO Tree](process/todo-tree.md)** - Development workflow tooling
 - **[Documentation Strategy](process/documentation-strategy.md)** - Selective merging approach
+- **[Module System](process/module-system.md)** - Mixed ES modules/CommonJS strategy
 
 ## Decision Timeline
 
@@ -38,5 +39,6 @@ Master index of all technical decisions with links to detailed documentation.
 12. CI/CD Pipeline: GitHub Actions
 13. Documentation Strategy: Selective merging
 14. TODO Tree Configuration: Custom icons
+15. Module System Strategy: Mixed ES modules/CommonJS
 
 *See [DISCUSSIONS.md](DISCUSSIONS.md) for discussion history and rationale.*
