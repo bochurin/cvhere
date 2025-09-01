@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import yaml from 'js-yaml'
+import { load } from 'js-yaml'
 
 interface HealthStatus {
   status: string
@@ -25,7 +25,7 @@ function App() {
         
         const response = await fetch(configUrl)
         const yamlText = await response.text()
-        const configData = yaml.load(yamlText) as Config
+        const configData = load(yamlText) as Config
         setConfig(configData)
       } catch (error) {
         console.error('Failed to load config:', error)

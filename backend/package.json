@@ -1,0 +1,22 @@
+{
+  "name": "@cvhere/backend",
+  "version": "1.0.0",
+
+  "description": "CVHere backend API",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "echo \"Backend tests not implemented yet\" && exit 0"
+  },
+  "dependencies": {
+    "fastify": "^4.24.3",
+    "@fastify/cors": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.2"
+  }
+}
