@@ -65,3 +65,9 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: Current auth implementation became complex, better to build incrementally from solid base
 - **Outcome**: Cancel basic-auth feature, start fresh with minimal app foundation
 - **Actions**: Created basic-app feature plan, will build: minimal backend → simple frontend → CI/CD → then auth
+
+## 2024-12-19 - Frontend configuration strategy
+- **Question**: How to configure frontend for different environments - build-time vs runtime?
+- **Key Points**: Build-time requires redeploy for config changes, runtime allows flexibility but has security concerns
+- **Outcome**: Pipeline-driven configuration - single build artifact with pipeline-injected configs
+- **Actions**: Single config.yaml file replaced by deployment pipeline per environment

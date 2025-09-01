@@ -1,0 +1,2 @@
+# Development Environment Configuration
+backendUrl: http://localhost:3001  # Local development backend

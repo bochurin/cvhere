@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "CV building and searching application",
   "scripts": {
-    "dev:backend": "nodemon --exec ts-node backend/src/server.ts",
+    "dev:backend": "nodemon",
     "build:backend": "tsc -p backend/tsconfig.json",
-    "start:backend": "node backend/dist/server.js"
+    "start:backend": "node backend/dist/server.js",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "install:frontend": "cd frontend && npm install"
   },
   "dependencies": {
-    "fastify": "^4.24.3"
+    "fastify": "^4.24.3",
+    "@fastify/cors": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

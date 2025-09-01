@@ -21,6 +21,9 @@ api:
   rateLimitPerMinute: 100  # API requests per minute per IP
   jwtExpiresIn: 7d         # JWT token expiration time
 
+frontend:
+  backendUrl: http://localhost:3001  # Backend API URL for frontend
+
 features:
   emailVerificationRequired: true  # Require email verification before login
   passwordResetEnabled: true       # Enable password reset functionality

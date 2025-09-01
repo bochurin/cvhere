@@ -29,6 +29,11 @@ Chronological log of all technical decisions with rationale and change history.
 **Rationale**: Solid foundation, working CI/CD early, incremental complexity, easier debugging
 **Details**: Minimal backend → simple frontend → CI/CD → authentication → features
 
+### Frontend Configuration: Pipeline-Driven Environment Config
+**Decision**: Use single build artifact with pipeline-injected configuration
+**Rationale**: Proper CI/CD practice, same build deployed everywhere, pipeline controls environment
+**Details**: Single config.yaml replaced by deployment pipeline per environment
+
 ### Database Access: Prisma ORM
 **Decision**: Use Prisma ORM for database access
 **Rationale**: Type-safe operations, excellent DX, perfect for atomic data model
