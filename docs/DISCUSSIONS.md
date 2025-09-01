@@ -71,3 +71,9 @@ Chronological log of discussions, ideas, questions and decisions during developm
 - **Key Points**: Build-time requires redeploy for config changes, runtime allows flexibility but has security concerns
 - **Outcome**: Pipeline-driven configuration - single build artifact with pipeline-injected configs
 - **Actions**: Single config.yaml file replaced by deployment pipeline per environment
+
+## 2024-12-19 - Infrastructure as Code approach
+- **Question**: Manual AWS setup vs Terraform IaC for infrastructure management?
+- **Key Points**: Manual is quick but not reproducible, Terraform provides version control and multi-environment support
+- **Outcome**: Use Terraform for Infrastructure as Code - proper DevOps practice
+- **Actions**: Created Terraform configuration with VPC, EC2, Security Groups for staging/production

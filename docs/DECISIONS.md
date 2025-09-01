@@ -34,6 +34,11 @@ Chronological log of all technical decisions with rationale and change history.
 **Rationale**: Proper CI/CD practice, same build deployed everywhere, pipeline controls environment
 **Details**: Single config.yaml replaced by deployment pipeline per environment
 
+### Infrastructure: Terraform IaC
+**Decision**: Use Terraform for Infrastructure as Code instead of manual AWS setup
+**Rationale**: Reproducible infrastructure, version controlled, multi-environment support, team collaboration
+**Details**: AWS VPC, EC2, Security Groups managed via Terraform with staging/production tfvars
+
 ### Database Access: Prisma ORM
 **Decision**: Use Prisma ORM for database access
 **Rationale**: Type-safe operations, excellent DX, perfect for atomic data model

@@ -21,19 +21,21 @@
 - ✅ Test frontend-backend integration locally
 - ✅ Implement pipeline-driven configuration (YAML)
 
-### Phase 3: Basic CI/CD
+### Phase 3: Infrastructure & CI/CD
+<!-- TODO: Create Terraform infrastructure for AWS -->
+- 🕰️ Create Terraform infrastructure for AWS (EC2, VPC, Security Groups)
+<!-- TODO: Set up staging and production environments -->
+- 🕰️ Set up staging and production environments with Terraform
 <!-- TODO: Create GitHub Actions workflow for backend -->
 - 🕰️ Create GitHub Actions workflow for backend
-<!-- TODO: Add build and test steps -->
-- 🕰️ Add build and test steps
 <!-- TODO: Create GitHub Actions workflow for frontend -->
 - 🕰️ Create GitHub Actions workflow for frontend
+<!-- TODO: Add Terraform deployment to pipeline -->
+- 🕰️ Add Terraform deployment to pipeline
 <!-- TODO: Add pipeline config injection for environments -->
 - 🕰️ Add pipeline config injection for environments
-<!-- TODO: Add deployment configuration (staging/production) -->
-- 🕰️ Add deployment configuration (staging/production)
-<!-- TODO: Test CI/CD pipeline with simple changes -->
-- 🕰️ Test CI/CD pipeline with simple changes
+<!-- TODO: Test full deployment pipeline -->
+- 🕰️ Test full deployment pipeline
 
 ### Phase 4: Foundation Complete
 <!-- TODO: Document deployment process -->
