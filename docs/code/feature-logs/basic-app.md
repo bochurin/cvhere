@@ -47,7 +47,11 @@
 
 - ✅ Backend health endpoint returns proper JSON response
 - ✅ Frontend successfully calls backend health endpoint
-- ✅ Environment clearly displayed in frontend
+- ✅ Environment clearly displayed in frontend and browser tab
+- ✅ Connection status detection works (Connected/Disconnected)
+- ✅ Backend starts/stops reliably with Ctrl+C
+- ✅ CORS properly configured for frontend-backend communication
+- ✅ Pipeline-driven YAML configuration implemented
 <!-- TODO: CI/CD pipeline builds and deploys both apps -->
 - 🕰️ CI/CD pipeline builds and deploys both apps
 <!-- TODO: Health checks work in staging/production -->
@@ -57,17 +61,27 @@
 
 ## Technical Decisions
 
-- **Backend**: Fastify + TypeScript (minimal setup)
-- **Frontend**: React + Vite (fast development)
+- **Backend**: Fastify + TypeScript (minimal, reliable start/stop)
+- **Frontend**: React + Vite + js-yaml (fast development)
 - **Configuration**: Pipeline-driven YAML configs (single build artifact)
-- **CI/CD**: GitHub Actions (integrated with repository)
+- **Connection Detection**: 5-second health checks with 3-second timeout
+- **Error Handling**: Proper fetch error handling and fallbacks
+- **CORS**: @fastify/cors for frontend-backend communication
+- **Environment Display**: Dynamic browser tab titles
+- **CI/CD**: GitHub Actions (ready for Phase 3)
 - **Deployment**: Simple approach, can enhance later
-- **Environment**: Clear separation dev/staging/production
 
 ## Current Status
 
 **Phase**: Phase 2 Complete ✅
-**Completed**: Frontend-backend integration with pipeline-driven YAML configuration
+**Completed**: 
+- Minimal Fastify backend with reliable start/stop (Ctrl+C works)
+- React frontend with health check component
+- Connection status detection (Connected/Disconnected)
+- Environment display in browser tab: "CVHere (env: development)"
+- Pipeline-driven YAML configuration system
+- CORS support for frontend-backend communication
+- 3-second timeout and proper error handling
 **Next**: Phase 3 - Basic CI/CD implementation
 
 ## Plan Confirmation

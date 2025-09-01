@@ -41,16 +41,30 @@ function App() {
     if (!config) return
 
     const checkHealth = async () => {
+      console.log('Checking health at:', config.backendUrl)
       try {
-        const response = await fetch(`${config.backendUrl}/health`)
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 3000) // 3 second timeout
+        
+        const response = await fetch(`${config.backendUrl}/health`, {
+          signal: controller.signal
+        })
+        clearTimeout(timeoutId)
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
         const data = await response.json()
+        console.log('Health check success:', data)
         setHealth(data)
         setConnected(true)
         // Update browser tab title with environment
-        document.title = `CVHere - ${data.environment}`
+        document.title = `CVHere (env: ${data.environment})`
       } catch (error) {
+        console.log('Health check failed:', error)
+        setHealth(null)
         setConnected(false)
-        document.title = 'CVHere - disconnected'
+        document.title = 'CVHere (env: disconnected)'
       }
     }
 
@@ -61,7 +75,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>CVHere - {health?.environment || 'Unknown'}</h1>
+      <h1>CVHere (env: {health?.environment || 'Unknown'})</h1>
       
       <div style={{ 
         padding: '10px', 

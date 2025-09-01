@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "CV building and searching application",
   "scripts": {
-    "dev:backend": "nodemon",
+    "dev:backend": "ts-node backend/src/server.ts",
     "build:backend": "tsc -p backend/tsconfig.json",
     "start:backend": "node backend/dist/server.js",
     "dev:frontend": "cd frontend && npm run dev",
