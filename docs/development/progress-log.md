@@ -59,7 +59,8 @@
 ## Current Status
 
 **Active Branch**: `feature/ci-cd-pipeline`
-**Focus**: CI/CD pipeline complete - ready for AWS setup and testing
+**Focus**: Documentation workflow automation - implementing selective commit/merge strategy
+**Current Activity**: Developing `scripts/docs-workflow.sh` to automate documentation strategy (commit docs-only, exclude feature logs, selective merge to main)
 **Ready For**: Authentication system development with full CI/CD support
 
 ## Development Approach
