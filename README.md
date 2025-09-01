@@ -1,72 +1,72 @@
 # CVHere
 
-CV building and searching application
+Privacy-first CV building and searching application with atomic data model.
 
-## Documentation
+## 📖 Documentation
 
-Project documentation is organized in the `docs/` folder:
+Complete project documentation is organized in the **[docs/](docs/)** folder:
 
-- **[CONCEPT.md](docs/CONCEPT.md)** - Platform vision, features, and core concepts
-- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Current tech stack and infrastructure overview
-- **[DECISIONS.md](docs/DECISIONS.md)** - Technical decisions log with rationale and history
-- **[DISCUSSIONS.md](docs/DISCUSSIONS.md)** - Discussion log for ideas and questions during development
-- **[DEVELOPMENT.md](docs/DEVELOPMENT.md)** - Development workflow, CI/CD, and testing strategy
-- **[SECURITY.md](docs/SECURITY.md)** - Security measures, privacy, and compliance
-- **[MVP-SCOPE.md](docs/MVP-SCOPE.md)** - MVP features, limitations, and success metrics
-- **[code/](docs/code/)** - Implementation decisions organized by feature branches
-- **[knowledge/](docs/knowledge/)** - Reference materials and extension documentation
-- **[chat-backup/](docs/chat-backup/)** - Archived development chat sessions
+### 📋 Project Overview
+- **[Concept](docs/project/concept.md)** - Platform vision, features, and core concepts
+- **[Architecture](docs/project/architecture.md)** - Tech stack and infrastructure overview
+- **[MVP Scope](docs/project/mvp-scope.md)** - MVP features and success metrics
+- **[Security](docs/project/security.md)** - Security measures and privacy
+- **[Workflow](docs/project/workflow.md)** - Git workflow and CI/CD process
 
-## Development Workflow
+### 🔧 Development
+- **[Progress Log](docs/development/progress-log.md)** - Development phases and current status
+- **[Decisions](docs/development/decisions/decisions.md)** - Technical decisions index
+- **[Discussions](docs/development/decisions/discussions.md)** - Discussion log
+
+### 🚀 Features
+- **[Basic App](docs/development/feature-logs/basic-app.md)** - Foundation (completed)
+- **[CI/CD Pipeline](docs/development/feature-logs/ci-cd-pipeline.md)** - Deployment (in progress)
+- **[Authentication](docs/development/feature-logs/basic-auth.md)** - User auth (planned)
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start development servers
+npm run dev
+
+# Build for production
+npm run build
+
+# Run tests
+npm run test
+```
+
+## 🏗️ Development Workflow
 
 ### Discussing New Ideas
-
-To discuss new ideas or changes during development, use:
-
 **"Discuss: [your idea/question]"**
 
-**Examples:**
-- "Discuss: should we use Redis for caching?"
-- "Discuss: do we need a separate microservice for authentication?"
-- "Discuss: should we change the database structure?"
-
-**Process:**
-1. **Clarification** - Questions to understand the context
-2. **Discussion** - Consider alternatives and implications
-3. **Decision** - Update all relevant documentation if decision is made
-4. **Log** - Record discussion in [DISCUSSIONS.md](docs/DISCUSSIONS.md)
-5. **Merge Docs** - Merge documentation decisions to main branch (excluding feature code)
-
 ### Feature Development
-
-To start implementing a new feature, use:
-
 **"Feature: [feature name] - [brief description]"**
 
-**Examples:**
-- "Feature: Basic Auth - JWT authentication system"
-- "Feature: Profile Builder - Atomic data model for user profiles"
-- "Feature: PDF Export - Generate CVs from profile data"
-
-**Process:**
-1. **Plan Creation** - Build detailed step-by-step plan
-2. **Plan Confirmation** - Review and adjust before starting
-3. **Step-by-step Execution** - Implement one step at a time
-4. **Plan Updates** - If plan changes, update feature log immediately
-5. **Commit After Steps** - Clean commits with meaningful messages
-6. **Progress Updates** - Mark completed steps in feature logs
-
-**Benefits:** Clear scope, documented plan evolution, clean git history, progress tracking
-
 ### Documentation Strategy
-
-**Technical decisions made during features:**
-- **Document immediately** in DECISIONS.md and DISCUSSIONS.md
-- **Merge docs to main** after decisions (excluding feature implementation)
-- **Keep feature code** in feature branch until complete
+- **Common docs** (architecture, decisions) → merge to main
+- **Feature logs** → stay in feature branches until complete
 - **Separate concerns** - decisions vs implementation
 
-**This ensures:**
-- Project decisions available to all developers
-- Clean separation of architecture vs features
-- Main branch always has latest technical choices
+## 📁 Project Structure
+
+```
+cvhere/
+├── backend/          # Node.js + Fastify API
+├── frontend/         # React + Vite application  
+├── terraform/        # AWS infrastructure
+├── docs/            # Complete documentation
+└── README.md        # This file
+```
+
+## 🎯 Current Status
+
+**Phase 3**: CI/CD Pipeline Implementation
+**Branch**: `feature/ci-cd-pipeline`
+**Next**: Pipeline integration and testing
+
+*See [Progress Log](docs/development/progress-log.md) for detailed development status.*
