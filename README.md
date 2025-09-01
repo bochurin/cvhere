@@ -50,6 +50,7 @@ npm run test
 ### Documentation Strategy
 - **Common docs** (architecture, decisions) → merge to main
 - **Feature logs** → stay in feature branches until complete
+- **Automated workflow** → `npm run docs` (commits docs-only, selective merge to main)
 - **Separate concerns** - decisions vs implementation
 
 ## 📁 Project Structure
