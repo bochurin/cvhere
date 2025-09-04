@@ -40,7 +40,7 @@
 ## Success Criteria
 
 - ✅ Terraform infrastructure deploys successfully to AWS
-- ✅ GitHub Actions workflow triggers on push to main
+- ✅ GitHub Actions workflow triggers on push to develop and releases
 - ✅ Server automation installs Node.js automatically
 - ✅ SSH-based deployment working
 - 🕰️ Backend builds and tests pass in pipeline
@@ -53,7 +53,7 @@
 
 - **CI/CD Platform**: GitHub Actions (repository integration, cost effective)
 - **Infrastructure**: Terraform IaC with AWS (reproducible, version controlled)
-- **Environment Strategy**: develop → staging, tags → production
+- **Environment Strategy**: develop → staging, main → stable, releases → production
 - **Config Injection**: Pipeline replaces config.yaml per environment
 - **Path Triggers**: Only run workflows when relevant files change
 - **Security**: AWS credentials via GitHub secrets
@@ -63,7 +63,7 @@
 ## Implementation Details
 
 ### Single Deployment Pipeline (`deploy.yml`)
-- **Triggers**: Push to main branch, manual trigger
+- **Triggers**: Push to develop branch, releases, manual trigger
 - **Build**: Backend and frontend build automation
 - **Infrastructure**: Terraform integration to get server IP
 - **Deploy**: SSH-based file copying and service startup
@@ -85,8 +85,8 @@
 ### Environment Strategy
 ```
 develop branch → staging environment
-main branch → staging infrastructure
-version tags → production deployment
+main branch → stable code (no deployment)
+version tags/releases → production deployment
 ```
 
 ### Pipeline Config Injection
