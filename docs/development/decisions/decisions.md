@@ -20,6 +20,7 @@ Master index of all technical decisions with links to detailed documentation.
 - **[Line Endings](process/line-endings.md)** - Git configuration for cross-platform
 - **[TODO Tree](process/todo-tree.md)** - Development workflow tooling
 - **[Documentation Strategy](process/documentation-strategy.md)** - Selective merging approach
+- **[Multi-Developer Workflow](process/multi-developer-workflow.md)** - Team coordination and branch workflow
 - **[Module System](process/module-system.md)** - Mixed ES modules/CommonJS strategy
 
 ## Decision Timeline
@@ -38,7 +39,8 @@ Master index of all technical decisions with links to detailed documentation.
 11. Infrastructure: Terraform IaC
 12. CI/CD Pipeline: GitHub Actions
 13. Documentation Strategy: Selective merging
-14. TODO Tree Configuration: Custom icons
-15. Module System Strategy: Mixed ES modules/CommonJS
+14. Multi-Developer Workflow: Documentation merge correction
+15. TODO Tree Configuration: Custom icons
+16. Module System Strategy: Mixed ES modules/CommonJS
 
 *See [DISCUSSIONS.md](DISCUSSIONS.md) for discussion history and rationale.*

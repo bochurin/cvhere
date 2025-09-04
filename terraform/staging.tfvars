@@ -1,4 +1,3 @@
-# Staging Environment Variables
+# Staging Environment Configuration
 environment = "staging"
-aws_region = "us-east-1"
-key_pair_name = "cvhere-staging-key"
+instance_type = "t2.micro"  # Small and cheap for testing
