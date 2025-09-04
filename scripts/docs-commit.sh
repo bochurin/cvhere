@@ -7,7 +7,6 @@ echo "=== CVHere Documentation Strategy Workflow ==="
 commit_docs() {
     git reset HEAD . >/dev/null 2>&1 || true
     git add docs/ README.md
-    git reset HEAD docs/development/feature-logs/ >/dev/null 2>&1 || true
     
     if git diff --cached --quiet; then
         echo "No documentation changes to commit."
@@ -41,7 +40,7 @@ commit_docs() {
 find_docs_to_merge() {
     docs_files_to_merge=""
     for file in docs/**/*.md README.md; do
-        if [ -f "$file" ] && [[ ! "$file" =~ docs/development/feature-logs/ ]] && ! git diff --quiet develop:"$file" "$file" 2>/dev/null; then
+        if [ -f "$file" ] && ! git diff --quiet develop:"$file" "$file" 2>/dev/null; then
             docs_files_to_merge="$docs_files_to_merge $file"
         fi
     done

@@ -3,8 +3,10 @@ name: Deploy to AWS
 # When to run this workflow
 on:
   push:
-    branches: [ main ]  # Deploy when code is pushed to main branch
-  workflow_dispatch:    # Allow manual trigger
+    branches: [ develop ]  # Deploy to staging when code is pushed to develop
+  release:
+    types: [ published ]   # Deploy to production when a release is published
+  workflow_dispatch:       # Allow manual trigger
 
 jobs:
   deploy:
@@ -33,7 +35,27 @@ jobs:
     - name: Build frontend
       run: npm run build:frontend
     
-    # Step 5: Get server IP from Terraform
+    # Step 5: Determine environment
+    - name: Determine environment
+      id: environment
+      run: |
+        if [[ "${{ github.event_name }}" == "release" ]]; then
+          echo "env=production" >> $GITHUB_OUTPUT
+          echo "🚀 Deploying to PRODUCTION"
+        else
+          echo "env=staging" >> $GITHUB_OUTPUT
+          echo "🧪 Deploying to STAGING"
+        fi
+    
+    # Step 6: Setup AWS credentials
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    
+    # Step 7: Get server IP from Terraform
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
@@ -44,11 +66,13 @@ jobs:
       run: |
         cd terraform
         terraform init
+        terraform workspace select ${{ steps.environment.outputs.env }} || terraform workspace new ${{ steps.environment.outputs.env }}
+        terraform apply -var-file="${{ steps.environment.outputs.env }}.tfvars" -auto-approve
         SERVER_IP=$(terraform output -raw server_ip)
         echo "server_ip=$SERVER_IP" >> $GITHUB_OUTPUT
-        echo "🎯 Server IP: $SERVER_IP"
+        echo "🎯 ${{ steps.environment.outputs.env }} Server IP: $SERVER_IP"
     
-    # Step 6: Setup SSH
+    # Step 8: Setup SSH
     - name: Setup SSH key
       run: |
         mkdir -p ~/.ssh
@@ -56,7 +80,7 @@ jobs:
         chmod 600 ~/.ssh/cvhere-staging.pem
         ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts
     
-    # Step 7: Deploy to server
+    # Step 9: Deploy to server
     - name: Deploy to server
       run: |
         SERVER_IP="${{ steps.server_ip.outputs.server_ip }}"

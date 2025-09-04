@@ -110,3 +110,14 @@ output "server_ip" {
   description = "Public IP address of the web server"
   value       = aws_instance.web.public_ip
 }
+
+# Environment-specific outputs for CI/CD
+output "staging_server_ip" {
+  description = "Staging server IP (when environment is staging)"
+  value       = var.environment == "staging" ? aws_instance.web.public_ip : null
+}
+
+output "production_server_ip" {
+  description = "Production server IP (when environment is production)"
+  value       = var.environment == "production" ? aws_instance.web.public_ip : null
+}
