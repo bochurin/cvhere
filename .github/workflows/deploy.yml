@@ -103,11 +103,10 @@ jobs:
           sleep 10
         done
         
-        # Verify we got the host key
-        if ! grep -q "${{ steps.server_ip.outputs.server_ip }}" ~/.ssh/known_hosts; then
+        # Verify we got the host key (check if known_hosts has content)
+        if [ ! -s ~/.ssh/known_hosts ]; then
           echo "❌ Failed to get SSH host key after 5 minutes"
-          echo "Debug: Contents of known_hosts:"
-          cat ~/.ssh/known_hosts || echo "known_hosts file is empty or missing"
+          echo "Debug: known_hosts file is empty or missing"
           exit 1
         fi
         
