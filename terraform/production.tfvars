@@ -1,4 +1,3 @@
-# Production Environment Variables
+# Production Environment Configuration
 environment = "production"
-aws_region = "us-east-1"
-key_pair_name = "cvhere-production-key"
+instance_type = "t2.small"  # Slightly bigger for production
