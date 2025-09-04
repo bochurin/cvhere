@@ -94,8 +94,9 @@ jobs:
         # Wait for EC2 instance to be ready and SSH accessible
         echo "⏳ Waiting for SSH to be ready on ${{ steps.server_ip.outputs.server_ip }}..."
         for i in {1..30}; do
-          if ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts 2>/dev/null; then
-            echo "✅ SSH is ready"
+          if ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} 2>/dev/null | grep -q "ssh-"; then
+            echo "Attempt $i/30: SSH is ready, getting host key..."
+            ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts
             break
           fi
           echo "Attempt $i/30: SSH not ready yet, waiting 10 seconds..."
@@ -105,8 +106,12 @@ jobs:
         # Verify we got the host key
         if ! grep -q "${{ steps.server_ip.outputs.server_ip }}" ~/.ssh/known_hosts; then
           echo "❌ Failed to get SSH host key after 5 minutes"
+          echo "Debug: Contents of known_hosts:"
+          cat ~/.ssh/known_hosts || echo "known_hosts file is empty or missing"
           exit 1
         fi
+        
+        echo "✅ SSH host key added successfully"
     
     # Step 9: Deploy to server
     - name: Deploy to server
