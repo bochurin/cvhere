@@ -47,7 +47,15 @@ jobs:
           echo "🧪 Deploying to STAGING"
         fi
     
-    # Step 6: Get server IP from Terraform
+    # Step 6: Setup AWS credentials
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    
+    # Step 7: Get server IP from Terraform
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
@@ -58,11 +66,13 @@ jobs:
       run: |
         cd terraform
         terraform init
-        SERVER_IP=$(terraform output -raw ${{ steps.environment.outputs.env }}_server_ip)
+        terraform workspace select ${{ steps.environment.outputs.env }} || terraform workspace new ${{ steps.environment.outputs.env }}
+        terraform apply -var-file="${{ steps.environment.outputs.env }}.tfvars" -auto-approve
+        SERVER_IP=$(terraform output -raw server_ip)
         echo "server_ip=$SERVER_IP" >> $GITHUB_OUTPUT
         echo "🎯 ${{ steps.environment.outputs.env }} Server IP: $SERVER_IP"
     
-    # Step 7: Setup SSH
+    # Step 8: Setup SSH
     - name: Setup SSH key
       run: |
         mkdir -p ~/.ssh
@@ -70,7 +80,7 @@ jobs:
         chmod 600 ~/.ssh/cvhere-staging.pem
         ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts
     
-    # Step 8: Deploy to server
+    # Step 9: Deploy to server
     - name: Deploy to server
       run: |
         SERVER_IP="${{ steps.server_ip.outputs.server_ip }}"
