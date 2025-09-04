@@ -71,6 +71,11 @@ jobs:
         SERVER_IP=$(terraform output -raw server_ip)
         echo "server_ip=$SERVER_IP" >> $GITHUB_OUTPUT
         echo "🎯 ${{ steps.environment.outputs.env }} Server IP: $SERVER_IP"
+        
+        # Wait for EC2 instance to be running
+        echo "⏳ Waiting for EC2 instance to be running..."
+        aws ec2 wait instance-running --instance-ids $(terraform output -raw instance_id)
+        echo "✅ EC2 instance is running"
     
     # Step 8: Setup SSH
     - name: Setup SSH key
@@ -86,7 +91,22 @@ jobs:
           exit 1
         fi
         
-        ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts
+        # Wait for EC2 instance to be ready and SSH accessible
+        echo "⏳ Waiting for SSH to be ready on ${{ steps.server_ip.outputs.server_ip }}..."
+        for i in {1..30}; do
+          if ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts 2>/dev/null; then
+            echo "✅ SSH is ready"
+            break
+          fi
+          echo "Attempt $i/30: SSH not ready yet, waiting 10 seconds..."
+          sleep 10
+        done
+        
+        # Verify we got the host key
+        if ! grep -q "${{ steps.server_ip.outputs.server_ip }}" ~/.ssh/known_hosts; then
+          echo "❌ Failed to get SSH host key after 5 minutes"
+          exit 1
+        fi
     
     # Step 9: Deploy to server
     - name: Deploy to server

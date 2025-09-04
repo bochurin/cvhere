@@ -121,6 +121,12 @@ output "server_ip" {
   value       = aws_instance.web.public_ip
 }
 
+# Instance ID for status checking
+output "instance_id" {
+  description = "EC2 instance ID"
+  value       = aws_instance.web.id
+}
+
 # Environment-specific outputs for CI/CD
 output "staging_server_ip" {
   description = "Staging server IP (when environment is staging)"
