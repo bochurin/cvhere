@@ -78,6 +78,14 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/cvhere-staging.pem
         chmod 600 ~/.ssh/cvhere-staging.pem
+        
+        # Verify SSH key was written
+        if [ ! -s ~/.ssh/cvhere-staging.pem ]; then
+          echo "❌ SSH private key is empty or missing from secrets"
+          echo "Please add SSH_PRIVATE_KEY to GitHub repository secrets"
+          exit 1
+        fi
+        
         ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts
     
     # Step 9: Deploy to server
