@@ -2,6 +2,8 @@
 
 Privacy-first CV building and searching application with atomic data model.
 
+<!-- Trigger deployment -->
+
 ## 📖 Documentation
 
 Complete project documentation is organized in the **[docs/](docs/)** folder:
