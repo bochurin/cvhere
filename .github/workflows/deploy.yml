@@ -124,11 +124,18 @@ jobs:
         SERVER_IP="${{ steps.server_ip.outputs.server_ip }}"
         echo "🚀 Deploying to server: $SERVER_IP"
         
+        # Update frontend config with server IP for this environment
+        if [[ "${{ steps.environment.outputs.env }}" == "production" ]]; then
+          echo "backendUrl: https://api.cvhere.net" > frontend/dist/config.yaml
+        else
+          echo "backendUrl: http://$SERVER_IP:3001" > frontend/dist/config.yaml
+        fi
+        
         # Copy built files to server
         scp -i ~/.ssh/cvhere-staging.pem -r backend/dist ec2-user@$SERVER_IP:~/backend-dist
         scp -i ~/.ssh/cvhere-staging.pem -r frontend/dist ec2-user@$SERVER_IP:~/frontend-dist
         
-        # Start services on server
+        # Deploy and start services
         ssh -i ~/.ssh/cvhere-staging.pem ec2-user@$SERVER_IP << 'EOF'
           source ~/.nvm/nvm.sh
           
@@ -136,11 +143,15 @@ jobs:
           pkill -f "node.*server" || true
           pkill -f "serve" || true
           
-          # Start backend
+          # Install backend dependencies
           cd ~/backend-dist
+          npm init -y
+          npm install fastify @fastify/cors
+          
+          # Start backend
           nohup node server.js > ~/backend.log 2>&1 &
           
-          # Start frontend (simple HTTP server)
+          # Start frontend
           cd ~/frontend-dist
           nohup npx serve -s . -l 3000 > ~/frontend.log 2>&1 &
           

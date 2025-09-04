@@ -6,7 +6,7 @@ const fastify = Fastify({
 
 // Enable CORS for frontend
 fastify.register(require('@fastify/cors'), {
-  origin: ['http://localhost:3000']
+  origin: true  // Allow all origins for simplicity
 });
 
 // Health check endpoint
