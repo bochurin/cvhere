@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.1"
+    }
   }
 }
 
@@ -56,9 +60,15 @@ resource "aws_instance" "web" {
   }
 }
 
+# Random suffix to avoid naming conflicts
+resource "random_id" "suffix" {
+  byte_length = 4
+}
+
 # Security group - controls network access
 resource "aws_security_group" "web" {
-  name = "cvhere-${var.environment}-web"
+  name        = "cvhere-${var.environment}-web-${random_id.suffix.hex}"
+  description = "Security group for CVHere ${var.environment} environment"
 
   # Allow HTTP (port 80)
   ingress {
