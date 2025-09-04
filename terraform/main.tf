@@ -3,6 +3,14 @@
 
 terraform {
   required_version = ">= 1.0"
+  
+  # Store state in S3 for persistence across deployments
+  backend "s3" {
+    bucket = "cvhere-terraform-state"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+  }
+  
   required_providers {
     aws = {
       source  = "hashicorp/aws"

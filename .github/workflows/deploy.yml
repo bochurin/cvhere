@@ -61,13 +61,19 @@ jobs:
       with:
         terraform_version: 1.6.0
     
-    - name: Get server IP
+    - name: Deploy infrastructure
       id: server_ip
       run: |
         cd terraform
         terraform init
+        
+        # Use workspace for environment separation
         terraform workspace new ${{ steps.environment.outputs.env }} 2>/dev/null || terraform workspace select ${{ steps.environment.outputs.env }}
-        terraform apply -var-file="${{ steps.environment.outputs.env }}.tfvars" -auto-approve
+        
+        # Plan and apply changes (updates existing or creates new)
+        terraform plan -var-file="${{ steps.environment.outputs.env }}.tfvars" -out=tfplan
+        terraform apply tfplan
+        
         SERVER_IP=$(terraform output -raw server_ip)
         echo "server_ip=$SERVER_IP" >> $GITHUB_OUTPUT
         echo "🎯 ${{ steps.environment.outputs.env }} Server IP: $SERVER_IP"
