@@ -30,7 +30,7 @@ variable "instance_type" {
 
 # Create a simple EC2 instance
 resource "aws_instance" "web" {
-  ami           = "ami-0c02fb55956c7d316"  # Amazon Linux 2
+  ami           = "ami-0c02fb55956c7d316"  # Amazon Linux 2 for us-east-1
   instance_type = var.instance_type
   
   # Allow HTTP traffic

@@ -35,19 +35,19 @@ commit_docs() {
     fi
 }
 
-# Function to find files that need merging to main
+# Function to find files that need merging to develop
 find_docs_to_merge() {
     docs_files_to_merge=""
     for file in docs/**/*.md README.md; do
-        if [ -f "$file" ] && [[ ! "$file" =~ docs/development/feature-logs/ ]] && ! git diff --quiet main:"$file" "$file" 2>/dev/null; then
+        if [ -f "$file" ] && [[ ! "$file" =~ docs/development/feature-logs/ ]] && ! git diff --quiet develop:"$file" "$file" 2>/dev/null; then
             docs_files_to_merge="$docs_files_to_merge $file"
         fi
     done
     echo "$docs_files_to_merge"
 }
 
-# Function to merge documentation to main
-merge_docs_to_main() {
+# Function to merge documentation to develop
+merge_docs_to_develop() {
     local current_branch="$1"
     local files_to_merge="$2"
     
@@ -55,14 +55,14 @@ merge_docs_to_main() {
     echo "$files_to_merge" | tr ' ' '\n' | sed 's/^/  - /'
     echo
     
-    read -p "Merge documentation to main? (y/N): " confirm
+    read -p "Merge documentation to develop? (y/N): " confirm
     if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
         echo "Merge cancelled."
         return 1
     fi
     
     git stash push -m "Auto-stash before docs merge" -q
-    git checkout main -q
+    git checkout develop -q
     
     for file in $files_to_merge; do
         git checkout "$current_branch" -- "$file" >/dev/null 2>&1 || true
@@ -71,7 +71,7 @@ merge_docs_to_main() {
     
     if ! git diff --cached --quiet; then
         git commit -m "Update documentation from $current_branch"
-        echo "✅ Documentation merged to main"
+        echo "✅ Documentation merged to develop"
     fi
     
     git checkout "$current_branch" -q
@@ -83,18 +83,18 @@ merge_docs_to_main() {
 commit_docs
 
 current_branch=$(git branch --show-current)
-if [ "$current_branch" = "main" ]; then
-    echo "Already on main branch. Workflow complete."
+if [ "$current_branch" = "develop" ]; then
+    echo "Already on develop branch. Workflow complete."
     exit 0
 fi
 
 docs_files_to_merge=$(find_docs_to_merge)
 if [ -z "$docs_files_to_merge" ]; then
-    echo "Documentation is already up to date in main."
+    echo "Documentation is already up to date in develop."
     exit 0
 fi
 
-if merge_docs_to_main "$current_branch" "$docs_files_to_merge"; then
+if merge_docs_to_develop "$current_branch" "$docs_files_to_merge"; then
     echo "✅ Documentation workflow complete!"
 else
     echo "Documentation remains in $current_branch branch."

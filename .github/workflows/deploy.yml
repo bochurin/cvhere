@@ -1,0 +1,41 @@
+name: Deploy to AWS
+
+# When to run this workflow
+on:
+  push:
+    branches: [ main ]  # Deploy when code is pushed to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Get the code
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # Step 2: Setup Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm ci
+    
+    # Step 4: Build the applications
+    - name: Build backend
+      run: npm run build:backend
+    
+    - name: Build frontend
+      run: npm run build:frontend
+    
+    # Step 5: Deploy to server (placeholder for now)
+    - name: Deploy to server
+      run: |
+        echo "🚀 Deploying to server: 18.232.140.48"
+        echo "📦 Backend built successfully"
+        echo "📦 Frontend built successfully"
+        echo "TODO: Copy files to server and start services"

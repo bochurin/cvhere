@@ -19,7 +19,12 @@
     "test": "npm run test:backend && npm run test:frontend",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "docs:commit": "clear && bash scripts/commit/docs-commit.sh",
-    "feat-docs:commit": "clear && bash scripts/commit/feature-docs-commit.sh"
+    "feat-docs:commit": "clear && bash scripts/commit/feature-docs-commit.sh",
+    "deploy:staging": "bash scripts/deploy-backend.sh staging $(bash scripts/get-instance-ip.sh staging) && bash scripts/deploy-frontend.sh staging $(bash scripts/get-instance-ip.sh staging)",
+    "deploy:production": "bash scripts/deploy-backend.sh production $(bash scripts/get-instance-ip.sh production) && bash scripts/deploy-frontend.sh production $(bash scripts/get-instance-ip.sh production)",
+    "health:staging": "bash scripts/health-check.sh staging $(bash scripts/get-instance-ip.sh staging)",
+    "health:production": "bash scripts/health-check.sh production $(bash scripts/get-instance-ip.sh production)",
+    "terraform:setup": "bash scripts/setup-terraform-backend.sh"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
