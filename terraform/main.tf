@@ -49,7 +49,7 @@ resource "aws_instance" "web" {
     
     # Install Node.js via NVM for ec2-user
     sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
-    sudo -u ec2-user bash -c 'source ~/.nvm/nvm.sh && nvm install 16 && nvm use 16 && nvm alias default 16'
+    sudo -u ec2-user bash -c 'source ~/.nvm/nvm.sh && nvm install 18 && nvm use 18 && nvm alias default 18'
     
     echo "Node.js $(sudo -u ec2-user bash -c 'source ~/.nvm/nvm.sh && node --version') installed" > /tmp/setup-complete.log
   EOF
@@ -78,12 +78,12 @@ resource "aws_security_group" "web" {
     cidr_blocks = ["0.0.0.0/0"]  # Allow from anywhere
   }
 
-  # Allow our backend API (port 3001)
+  # Allow backend API only from localhost (frontend can access via localhost)
   ingress {
     from_port   = 3001
     to_port     = 3001
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["127.0.0.1/32"]  # Only localhost
   }
 
   # Allow our frontend (port 3000)
