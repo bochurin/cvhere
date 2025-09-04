@@ -66,7 +66,7 @@ jobs:
       run: |
         cd terraform
         terraform init
-        terraform workspace select ${{ steps.environment.outputs.env }} || terraform workspace new ${{ steps.environment.outputs.env }}
+        terraform workspace new ${{ steps.environment.outputs.env }} 2>/dev/null || terraform workspace select ${{ steps.environment.outputs.env }}
         terraform apply -var-file="${{ steps.environment.outputs.env }}.tfvars" -auto-approve
         SERVER_IP=$(terraform output -raw server_ip)
         echo "server_ip=$SERVER_IP" >> $GITHUB_OUTPUT
