@@ -18,7 +18,9 @@ commit_feature_logs() {
     echo
     
     default_message="Update feature logs"
-    read -p "Commit message (Enter for '$default_message'): " message
+    echo "Commit message (Enter for '$default_message'):"
+    read -r message
+    
     if [ -z "$message" ]; then
         message="$default_message"
     fi

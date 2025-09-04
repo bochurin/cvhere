@@ -32,6 +32,7 @@ variable "instance_type" {
 resource "aws_instance" "web" {
   ami           = "ami-0c02fb55956c7d316"  # Amazon Linux 2 for us-east-1
   instance_type = var.instance_type
+  key_name      = "cvhere-staging"  # SSH key for access
   
   # Allow HTTP traffic
   vpc_security_group_ids = [aws_security_group.web.id]
@@ -40,8 +41,13 @@ resource "aws_instance" "web" {
   user_data = <<-EOF
     #!/bin/bash
     yum update -y
-    yum install -y nodejs npm git
-    echo "Server ready for deployment"
+    yum install -y git
+    
+    # Install Node.js via NVM for ec2-user
+    sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
+    sudo -u ec2-user bash -c 'source ~/.nvm/nvm.sh && nvm install 16 && nvm use 16 && nvm alias default 16'
+    
+    echo "Node.js $(sudo -u ec2-user bash -c 'source ~/.nvm/nvm.sh && node --version') installed" > /tmp/setup-complete.log
   EOF
 
   tags = {

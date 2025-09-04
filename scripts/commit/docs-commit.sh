@@ -19,7 +19,9 @@ commit_docs() {
     echo
     
     default_message="Update project documentation"
-    read -p "Commit message (Enter for '$default_message'): " message
+    echo "Commit message (Enter for '$default_message'):"
+    read -r message
+    
     if [ -z "$message" ]; then
         message="$default_message"
     fi

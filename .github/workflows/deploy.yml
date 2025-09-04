@@ -4,6 +4,7 @@ name: Deploy to AWS
 on:
   push:
     branches: [ main ]  # Deploy when code is pushed to main branch
+  workflow_dispatch:    # Allow manual trigger
 
 jobs:
   deploy:
@@ -32,10 +33,56 @@ jobs:
     - name: Build frontend
       run: npm run build:frontend
     
-    # Step 5: Deploy to server (placeholder for now)
+    # Step 5: Get server IP from Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.6.0
+    
+    - name: Get server IP
+      id: server_ip
+      run: |
+        cd terraform
+        terraform init
+        SERVER_IP=$(terraform output -raw server_ip)
+        echo "server_ip=$SERVER_IP" >> $GITHUB_OUTPUT
+        echo "🎯 Server IP: $SERVER_IP"
+    
+    # Step 6: Setup SSH
+    - name: Setup SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/cvhere-staging.pem
+        chmod 600 ~/.ssh/cvhere-staging.pem
+        ssh-keyscan -H ${{ steps.server_ip.outputs.server_ip }} >> ~/.ssh/known_hosts
+    
+    # Step 7: Deploy to server
     - name: Deploy to server
       run: |
-        echo "🚀 Deploying to server: 18.232.140.48"
-        echo "📦 Backend built successfully"
-        echo "📦 Frontend built successfully"
-        echo "TODO: Copy files to server and start services"
+        SERVER_IP="${{ steps.server_ip.outputs.server_ip }}"
+        echo "🚀 Deploying to server: $SERVER_IP"
+        
+        # Copy built files to server
+        scp -i ~/.ssh/cvhere-staging.pem -r backend/dist ec2-user@$SERVER_IP:~/backend-dist
+        scp -i ~/.ssh/cvhere-staging.pem -r frontend/dist ec2-user@$SERVER_IP:~/frontend-dist
+        
+        # Start services on server
+        ssh -i ~/.ssh/cvhere-staging.pem ec2-user@$SERVER_IP << 'EOF'
+          source ~/.nvm/nvm.sh
+          
+          # Stop any existing services
+          pkill -f "node.*server" || true
+          pkill -f "serve" || true
+          
+          # Start backend
+          cd ~/backend-dist
+          nohup node server.js > ~/backend.log 2>&1 &
+          
+          # Start frontend (simple HTTP server)
+          cd ~/frontend-dist
+          nohup npx serve -s . -l 3000 > ~/frontend.log 2>&1 &
+          
+          echo "✅ Services started"
+        EOF
+        
+        echo "🎉 Deployment complete!"
