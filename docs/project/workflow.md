@@ -9,7 +9,7 @@
 ## CI/CD Pipeline
 - **GitHub Actions**: Automated workflows for backend, frontend, infrastructure
 - **Path-based Triggers**: Only run workflows when relevant files change
-- **Environment Strategy**: develop → staging, version tags → production
+- **Environment Strategy**: develop → staging, main → stable, releases → production
 - **Config Injection**: Pipeline replaces config.yaml per environment
 - **Infrastructure**: Terraform managed via pipeline
 - **Rollback**: Deploy previous version tags for quick revert
@@ -18,7 +18,7 @@
 1. **Feature Development**: Feature branch → PR to develop
 2. **Staging Deployment**: Merge to develop → auto-deploy staging
 3. **Production Release**: Tag version → deploy to production
-4. **Infrastructure**: Changes to main → update staging, tags → update production
+4. **Infrastructure**: Changes to develop → update staging, releases → update production
 
 ## Testing Strategy
 - **Framework**: Jest for backend and frontend testing (planned)
