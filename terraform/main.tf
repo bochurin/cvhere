@@ -44,7 +44,7 @@ variable "instance_type" {
 resource "aws_instance" "cvhere" {
   ami           = "ami-0230bd60aa48260c6"  # Amazon Linux 2023 for us-east-1
   instance_type = var.instance_type
-  key_name      = aws_key_pair.cvhere.key_name
+  key_name      = data.aws_key_pair.cvhere.key_name
   
   # Allow HTTP traffic
   vpc_security_group_ids = [aws_security_group.cvhere.id]
@@ -73,10 +73,9 @@ resource "aws_instance" "cvhere" {
   }
 }
 
-# SSH Key Pair for server access
-resource "aws_key_pair" "cvhere" {
-  key_name   = "cvhere-${var.environment}"
-  public_key = file("~/.ssh/cvhere-${var.environment}.pub")
+# Use existing SSH Key Pair
+data "aws_key_pair" "cvhere" {
+  key_name = "cvhere-${var.environment}"
 }
 
 # Security group - controls network access
@@ -138,4 +137,15 @@ output "server_ip" {
 output "instance_id" {
   description = "EC2 instance ID"
   value       = aws_instance.cvhere.id
+}
+
+# Environment-specific outputs for CI/CD compatibility
+output "staging_server_ip" {
+  description = "Staging server IP (when environment is staging)"
+  value       = var.environment == "staging" ? aws_instance.cvhere.public_ip : null
+}
+
+output "production_server_ip" {
+  description = "Production server IP (when environment is production)"
+  value       = var.environment == "production" ? aws_instance.cvhere.public_ip : null
 }
