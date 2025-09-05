@@ -11,6 +11,7 @@ Master index of all technical decisions with links to detailed documentation.
 
 ## Infrastructure Decisions
 - **[Terraform](infrastructure/terraform.md)** - Infrastructure as Code with AWS
+- **[Docker](infrastructure/docker.md)** - Container-based deployment strategy
 - **[CI/CD](infrastructure/cicd.md)** - GitHub Actions workflows (planned)
 - **[Environments](infrastructure/environments.md)** - Staging/production setup (planned)
 
@@ -22,6 +23,7 @@ Master index of all technical decisions with links to detailed documentation.
 - **[Documentation Strategy](process/documentation-strategy.md)** - Selective merging approach
 - **[Multi-Developer Workflow](process/multi-developer-workflow.md)** - Team coordination and branch workflow
 - **[Module System](process/module-system.md)** - Mixed ES modules/CommonJS strategy
+- **[Resource Naming](process/resource-naming.md)** - Consistent naming without AWS prefixes
 
 ## Decision Timeline
 

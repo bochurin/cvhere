@@ -3,11 +3,11 @@
 ## Branch History
 - **`feature/ci-cd-pipeline`** (2024-12-19) - In progress, infrastructure and workflows complete
 
-## Latest Iteration: 2025-09-04 - Simple CI/CD Pipeline Implementation
+## Latest Iteration: 2025-09-04 - Docker-Based Deployment Enhancement
 
-**Branch**: `feature/ci-cd-pipeline` (completed)
-**Goal**: Implement basic CI/CD pipeline with GitHub Actions and Terraform infrastructure
-**Status**: Complete - working CI/CD pipeline with automated server setup
+**Branch**: `feature/docker-deployment` (in progress)
+**Goal**: Replace manual deployment with Docker containers for reliable, consistent deployments
+**Status**: In Progress - Docker setup created, testing deployment
 
 ## Feature Plan
 
@@ -30,12 +30,19 @@
 - ✅ Service startup automation on remote server
 - ✅ Manual trigger support for testing
 
-### 📋 Phase 4: Pipeline Optimization (Future)
-- 📋 Add health checks after deployment
-- 📋 Add rollback automation on failure
-- 📋 Add deployment notifications (Slack/email)
-- 📋 Test staging and production deployments
-- 📋 Add monitoring and alerting
+### 🚧 Phase 4: Docker Enhancement (In Progress)
+- 🕰️ **Docker Containers**: Backend/frontend Dockerfiles created
+- 🕰️ **Docker Compose**: Service orchestration configuration
+- 🕰️ **Infrastructure Update**: Terraform updated for Docker installation
+- 🕰️ **CI/CD Integration**: Pipeline updated for container deployment
+- 🕰️ **Resource Naming**: Proper naming without AWS prefixes
+
+### 📋 Phase 5: Blue-Green Deployment (Planned)
+- 📋 Container swapping strategy
+- 📋 Nginx proxy for traffic switching
+- 📋 Health checks before switching
+- 📋 Rollback automation
+- 📋 Zero-downtime deployments
 
 ## Success Criteria
 
@@ -57,7 +64,7 @@
 - **Config Injection**: Pipeline replaces config.yaml per environment
 - **Path Triggers**: Only run workflows when relevant files change
 - **Security**: AWS credentials via GitHub secrets
-- **Deployment**: EC2 instances with Docker deployment
+- **Deployment**: Docker containers with docker-compose orchestration
 - **Monitoring**: Basic health checks and deployment notifications
 
 ## Implementation Details
@@ -104,15 +111,15 @@ echo "backendUrl: https://api.cvhere.net" > frontend/dist/config.yaml
 
 ## Current Status
 
-**Phase**: All Phases Complete ✅
+**Phase**: Phase 4 Docker Enhancement 🚧
 **Completed**: 
-- **Infrastructure Automation**: Terraform creates EC2 with automated Node.js setup via NVM
-- **GitHub Actions**: Complete CI/CD workflows with real deployment logic
-- **Server Automation**: User_data script installs Node.js v16.20.2 automatically
-- **SSH Integration**: Secure key-based access and file deployment ready
-- **Build Pipeline**: Backend/frontend build and test automation working
-- **Manual Verification**: Tested and confirmed all automation works
-**Outcome**: Complete CI/CD pipeline ready for production use
+- **Infrastructure Automation**: Terraform with S3 backend, proper state management
+- **GitHub Actions**: Automated build, deploy, service management
+- **Docker Setup**: Dockerfiles and docker-compose created
+- **Resource Naming**: Proper naming conventions implemented
+- **Environment Configuration**: Dynamic config injection working
+**In Progress**: Docker deployment integration and testing
+**Outcome**: Moving from manual deployment to containerized deployment
 
 ## Cross-Feature Dependencies
 
