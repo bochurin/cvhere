@@ -132,30 +132,24 @@ jobs:
         fi
         
         # Copy built files to server
-        scp -i ~/.ssh/cvhere-staging.pem -r backend/dist ec2-user@$SERVER_IP:~/backend-dist
-        scp -i ~/.ssh/cvhere-staging.pem -r frontend/dist ec2-user@$SERVER_IP:~/frontend-dist
+        scp -i ~/.ssh/cvhere-staging.pem -r backend/dist/* ec2-user@$SERVER_IP:~/backend-dist/
+        scp -i ~/.ssh/cvhere-staging.pem -r frontend/dist/* ec2-user@$SERVER_IP:~/frontend-dist/
         
-        # Deploy and start services
+        # Copy Docker files
+        scp -i ~/.ssh/cvhere-staging.pem backend/Dockerfile ec2-user@$SERVER_IP:~/backend-dist/
+        scp -i ~/.ssh/cvhere-staging.pem frontend/Dockerfile ec2-user@$SERVER_IP:~/frontend-dist/
+        scp -i ~/.ssh/cvhere-staging.pem frontend/nginx.conf ec2-user@$SERVER_IP:~/frontend-dist/
+        scp -i ~/.ssh/cvhere-staging.pem docker-compose.yml ec2-user@$SERVER_IP:~/
+        
+        # Deploy with Docker
         ssh -i ~/.ssh/cvhere-staging.pem ec2-user@$SERVER_IP << 'EOF'
-          source ~/.nvm/nvm.sh
+          # Stop existing containers
+          docker-compose down || true
           
-          # Stop any existing services
-          pkill -f "node.*server" || true
-          pkill -f "serve" || true
+          # Build and start new containers
+          docker-compose up --build -d
           
-          # Install backend dependencies
-          cd ~/backend-dist
-          npm init -y
-          npm install fastify @fastify/cors
-          
-          # Start backend
-          nohup node server.js > ~/backend.log 2>&1 &
-          
-          # Start frontend
-          cd ~/frontend-dist
-          nohup npx serve -s . -l 3000 > ~/frontend.log 2>&1 &
-          
-          echo "✅ Services started"
+          echo "✅ Docker services started"
         EOF
         
         echo "🎉 Deployment complete!"

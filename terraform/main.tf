@@ -41,25 +41,30 @@ variable "instance_type" {
 }
 
 # Create a simple EC2 instance
-resource "aws_instance" "web" {
+resource "aws_instance" "cvhere" {
   ami           = "ami-0230bd60aa48260c6"  # Amazon Linux 2023 for us-east-1
   instance_type = var.instance_type
-  key_name      = "cvhere-staging"  # SSH key for access
+  key_name      = aws_key_pair.cvhere.key_name
   
   # Allow HTTP traffic
-  vpc_security_group_ids = [aws_security_group.web.id]
+  vpc_security_group_ids = [aws_security_group.cvhere.id]
   
   # Install basic software when server starts
   user_data = <<-EOF
     #!/bin/bash
     yum update -y
-    yum install -y git
     
-    # Install Node.js via NVM for ec2-user
-    sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
-    sudo -u ec2-user bash -c 'source ~/.nvm/nvm.sh && nvm install 18 && nvm use 18 && nvm alias default 18'
+    # Install Docker
+    yum install -y docker
+    systemctl start docker
+    systemctl enable docker
+    usermod -a -G docker ec2-user
     
-    echo "Node.js $(sudo -u ec2-user bash -c 'source ~/.nvm/nvm.sh && node --version') installed" > /tmp/setup-complete.log
+    # Install Docker Compose
+    curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    
+    echo "Docker $(docker --version) installed" > /tmp/setup-complete.log
   EOF
 
   tags = {
@@ -68,14 +73,15 @@ resource "aws_instance" "web" {
   }
 }
 
-# Random suffix to avoid naming conflicts
-resource "random_id" "suffix" {
-  byte_length = 4
+# SSH Key Pair for server access
+resource "aws_key_pair" "cvhere" {
+  key_name   = "cvhere-${var.environment}"
+  public_key = file("~/.ssh/cvhere-${var.environment}.pub")
 }
 
 # Security group - controls network access
-resource "aws_security_group" "web" {
-  name        = "cvhere-${var.environment}-web-${random_id.suffix.hex}"
+resource "aws_security_group" "cvhere" {
+  name        = "cvhere-${var.environment}"
   description = "Security group for CVHere ${var.environment} environment"
 
   # Allow HTTP (port 80)
@@ -86,12 +92,12 @@ resource "aws_security_group" "web" {
     cidr_blocks = ["0.0.0.0/0"]  # Allow from anywhere
   }
 
-  # Allow backend API only from localhost (frontend can access via localhost)
+  # Allow backend API from anywhere (needed for browser access)
   ingress {
     from_port   = 3001
     to_port     = 3001
     protocol    = "tcp"
-    cidr_blocks = ["127.0.0.1/32"]  # Only localhost
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   # Allow our frontend (port 3000)
@@ -119,29 +125,17 @@ resource "aws_security_group" "web" {
   }
 
   tags = {
-    Name = "cvhere-${var.environment}-security-group"
+    Name = "cvhere-${var.environment}"
   }
 }
 
 # Output the server IP so we can connect to it
 output "server_ip" {
-  description = "Public IP address of the web server"
-  value       = aws_instance.web.public_ip
+  description = "Public IP address of the server"
+  value       = aws_instance.cvhere.public_ip
 }
 
-# Instance ID for status checking
 output "instance_id" {
   description = "EC2 instance ID"
-  value       = aws_instance.web.id
-}
-
-# Environment-specific outputs for CI/CD
-output "staging_server_ip" {
-  description = "Staging server IP (when environment is staging)"
-  value       = var.environment == "staging" ? aws_instance.web.public_ip : null
-}
-
-output "production_server_ip" {
-  description = "Production server IP (when environment is production)"
-  value       = var.environment == "production" ? aws_instance.web.public_ip : null
+  value       = aws_instance.cvhere.id
 }

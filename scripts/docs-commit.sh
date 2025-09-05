@@ -5,6 +5,8 @@ echo "=== CVHere Documentation Strategy Workflow ==="
 
 # Function to commit documentation files
 commit_docs() {
+    local suggested_message="$1"
+    
     git reset HEAD . >/dev/null 2>&1 || true
     git add docs/ README.md
     
@@ -18,11 +20,20 @@ commit_docs() {
     echo
     
     default_message="Update project documentation"
-    echo "Commit message (Enter for '$default_message'):"
-    read -r message
+    if [ -n "$suggested_message" ]; then
+        echo "Commit message (Enter for '$suggested_message'):"
+        read -r -e -i "$suggested_message" message
+    else
+        echo "Commit message (Enter for '$default_message'):"
+        read -r message
+    fi
     
     if [ -z "$message" ]; then
-        message="$default_message"
+        if [ -n "$suggested_message" ]; then
+            message="$suggested_message"
+        else
+            message="$default_message"
+        fi
     fi
     
     read -p "Commit these documentation files? (y/N): " confirm
@@ -81,7 +92,8 @@ merge_docs_to_develop() {
 }
 
 # Main workflow
-commit_docs
+suggested_message="$1"
+commit_docs "$suggested_message"
 
 current_branch=$(git branch --show-current)
 if [ "$current_branch" = "develop" ]; then

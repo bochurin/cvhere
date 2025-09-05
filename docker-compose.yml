@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  cvhere-backend:
+    build: ./backend
+    container_name: cvhere-backend
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    networks:
+      - cvhere-network
+
+  cvhere-frontend:
+    build: ./frontend
+    container_name: cvhere-frontend
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - cvhere-network
+
+networks:
+  cvhere-network:
+    name: cvhere-network
